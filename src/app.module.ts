@@ -11,12 +11,15 @@ import { DatabaseModule } from './core/database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { LogsMiddleware, QueryMiddleware } from './core/middlewares';
+import { RouterModule } from '@nestjs/core';
+import { ApiRoute, allModule } from './router';
 
 @Module({
   imports: [
     DatabaseModule,
     ConfigModule.forRoot({ isGlobal: true }),
-    UserModule,
+    // RouterModule.register(ApiRoute),
+    ...allModule,
   ],
   controllers: [AppController],
   providers: [AppService],
